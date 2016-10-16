@@ -14,6 +14,7 @@ The App should look like the screen shots I have provided.
 There is no need to save any information changed in the application to the CSV file.
 
 The properties of the CSV file are as follows:
+
 1. Item Number
 2. Item Description
 3. Item Pack Size
