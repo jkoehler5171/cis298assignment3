@@ -24,7 +24,7 @@ Solution Requirements:
 
 * Master layout (You can use the same layout for both Portrait and Landscape unless you feel the need to make one for each)
 * Detail layout (You can use the same layout for both Portrait and Landscape unless you feel the need to make one for each)
-* Fragments for all of the layouts (Expect ViewPager. That one is a little different.)
+* Fragments for all of the layouts (Except ViewPager. That one is a little different.)
 * Ability to click on a list item and start a new Activity that displays the details of the list item.
 * Updating information in the detail view should be reflected in the list view when returning to the list.
 * Class to represent a Beverage Item (POJO)
