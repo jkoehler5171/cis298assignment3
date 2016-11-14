@@ -2,7 +2,7 @@
 ## Due 11-14-2016
 ## Author
 
-
+Jordan Koehler
 
 ## Description
 
@@ -65,7 +65,11 @@ Through File System:   app/src/main/res/raw/
 | Total                             | 100    |
 
 ## Outside Resources Used
+Heavy, heavy use of the inclass crime program. I almost feel bad for using it so directly, but hey I suppose if it ain't
+broken don't fix it.
 
-
+Other than that, Stack Overflow and a little bit of Google.
 
 ## Known Problems, Issues, And/Or Errors in the Program
+I couldn't get the program to retain the data when you go between detail and master view and I'm not sure why. I'm sure
+I just missed something small, but I have most of what I should need for it to work written.

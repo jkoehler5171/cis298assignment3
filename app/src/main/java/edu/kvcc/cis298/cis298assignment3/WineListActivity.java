@@ -1,3 +1,6 @@
+//Jordan Koehler
+//November 14th 2016
+//MW 2:30 -4:45
 package edu.kvcc.cis298.cis298assignment3;
 
 import android.support.v4.app.Fragment;

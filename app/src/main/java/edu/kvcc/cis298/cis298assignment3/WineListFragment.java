@@ -1,3 +1,6 @@
+//Jordan Koehler
+//November 14th 2016
+//MW 2:30 -4:45
 package edu.kvcc.cis298.cis298assignment3;
 
 import android.content.Intent;
@@ -20,12 +23,18 @@ import java.util.List;
  * Created by Jordan on 11/13/2016.
  */
 
+//This is a fragment to hold the master list of Wine Items, it uses a recycler view
+
 public class WineListFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
 
     private WineAdapter mWineAdapter;
 
+
+
+
+    //This is to inflate the view, as it doesn't happen automatically like with an activity.
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,10 +55,20 @@ public class WineListFragment extends Fragment {
         return view;
     }
 
+    //This should update the UI when it resusmes. I'm not currently able to save changes to the wine items for some reason.
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        updateUI();
+    }
+
+
+
+    //The Holders job is to hold a single item out of the wine list to display.
     private class WineHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        //This should hold all of the items in a single wine detail list.
+
 
         private TextView mWineNameTextView;
         private TextView mWineNumberTextView;
@@ -59,13 +78,12 @@ public class WineListFragment extends Fragment {
 
         private WineItem mWine;
 
-        //Constructor for the CrimeHolder.
+        //Constructor that sets up a few of the text views for the item.
         public WineHolder(View itemView) {
-            //Call the parent constructor
             super(itemView);
             itemView.setOnClickListener(this);
 
-            //need to set up the views for the layout widgets here.
+
             mWineNameTextView = (TextView) itemView.findViewById(R.id.list_item_wine_name_text_view);
 
             mWineNumberTextView= (TextView) itemView.findViewById(R.id.list_item_wine_number_text_view);
@@ -73,25 +91,22 @@ public class WineListFragment extends Fragment {
             mWinePriceTextview= (TextView) itemView.findViewById(R.id.list_item_wine_price_name);
 
         }
-
-        //Write a method in here to take in an instance of a crime
-        //and then assign the crime properties to the various
-        //view widgets
+        //This method actually places the information from the wine item being held into the holder.
         public  void bindWine(WineItem wine) {
 
             mWine = wine;
 
-            // Need to actually wire up the  the layout widgets here.
+
 
             mWineNameTextView.setText(mWine.getmWineDescription());
 
             mWineNumberTextView.setText(mWine.getmWineNumber());
 
-            mWinePriceTextview.setText(mWine.getmWinePrice().toString());
+            mWinePriceTextview.setText(mWine.getmWinePrice());
 
 
         }
-
+        //This method opens the detail view when the item in the list is clicked.
         @Override
         public void onClick(View v) {
             Intent intent = WinePagerActivity.CreateNewIntent(getActivity(),mWine.getmWineNumber());
@@ -99,6 +114,8 @@ public class WineListFragment extends Fragment {
         }
     }
 
+
+    //The Wine Adapter is a mid step between the array of wine Items and the individual items that go in the Holder.
     private class WineAdapter extends RecyclerView.Adapter<WineHolder> {
 
         private List<WineItem> mWines;
@@ -108,27 +125,28 @@ public class WineListFragment extends Fragment {
             mWines = wines;
         }
 
-
+        //This method creates a new view and layout, so it can create a new Wine Holder.
         @Override
         public WineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
             View view = layoutInflater.inflate(R.layout.list_item_wine, parent, false);
-            //Return a new crimeHolder and pass in the view we just created.
+
             return new WineHolder(view);
         }
 
+
+        //This method finds the information we want to pass into the wine holder from the wine list.
         @Override
         public void onBindViewHolder(WineHolder holder, int position) {
-            //Get the crime out of the list of crimes that is declared
-            //on the inner adapter class we wrote.
+
             WineItem wine = mWines.get(position);
-            //Set the data from the crime object
-            //to the viewHolders various widgets.
+
             holder.bindWine(wine);
         }
 
+        //Pretty straighforward, tells us how many items are in the wine arraylist.
         @Override
         public int getItemCount() {
             return mWines.size();
@@ -136,13 +154,15 @@ public class WineListFragment extends Fragment {
     }
 
 
-
+    //Method to update the UI when we make any changes as well as upon startup.
     private void updateUI() {
+
         WineCollection wineCollection = WineCollection.Get(getActivity());
 
         List<WineItem> wines = wineCollection.getmWineList();
 
-
+        // Checks to see if there is a Wine Adapter already, and if not makes one. If there is, it
+        //lets the adapter know that it's dataset has changed.
         if(mWineAdapter == null)
         {
             mWineAdapter = new WineAdapter(wines);
