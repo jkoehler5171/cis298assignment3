@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 /**
  * Created by Tomato on 11/13/2016.
@@ -17,6 +19,11 @@ public class WineFragment extends Fragment {
 
 
     private WineItem mWine;
+
+    private EditText mWineDescription;
+    private EditText mWineNumber;
+    private EditText mWinePack;
+    private CheckBox mWineAvailability;
 
     public static WineFragment CreateNewFragment(String wineNumber) {
 
@@ -43,6 +50,12 @@ public class WineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_wine,container, false);
+
+        mWineDescription = (EditText) v.findViewById(R.id.Wine_Name);
+        mWineNumber = (EditText) v.findViewById(R.id.ID_Edit_Text);
+        mWinePack = (EditText) v.findViewById(R.id.Pack_Edit_Text);
+
+
 
         return v;
     }

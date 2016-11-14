@@ -9,7 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -48,6 +51,12 @@ public class WineListFragment extends Fragment {
 
         //This should hold all of the items in a single wine detail list.
 
+        private TextView mWineNameTextView;
+        private TextView mWineNumberTextView;
+        private TextView mWinePriceTextview;
+
+
+
         private WineItem mWine;
 
         //Constructor for the CrimeHolder.
@@ -57,6 +66,12 @@ public class WineListFragment extends Fragment {
             itemView.setOnClickListener(this);
 
             //need to set up the views for the layout widgets here.
+            mWineNameTextView = (TextView) itemView.findViewById(R.id.list_item_wine_name_text_view);
+
+            mWineNumberTextView= (TextView) itemView.findViewById(R.id.list_item_wine_number_text_view);
+
+            mWinePriceTextview= (TextView) itemView.findViewById(R.id.list_item_wine_price_name);
+
         }
 
         //Write a method in here to take in an instance of a crime
@@ -67,6 +82,13 @@ public class WineListFragment extends Fragment {
             mWine = wine;
 
             // Need to actually wire up the  the layout widgets here.
+
+            mWineNameTextView.setText(mWine.getmWineDescription());
+
+            mWineNumberTextView.setText(mWine.getmWineNumber());
+
+            mWinePriceTextview.setText(mWine.getmWinePrice().toString());
+
 
         }
 

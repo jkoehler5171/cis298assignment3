@@ -11,12 +11,14 @@
         tools:text="Wine Name"/>
 
     <TextView
+        android:id="@+id/list_item_wine_number_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/list_item_wine_name_text_view"
         tools:text="Wine Number"/>
 
     <TextView
+        android:id="@+id/list_item_wine_price_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/list_item_wine_name_text_view"
