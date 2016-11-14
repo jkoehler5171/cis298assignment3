@@ -45,6 +45,18 @@ public class WineCollection {
         return mWineList;
     }
 
+    public WineItem getWineItem(String wineNumber){
+        for (WineItem wineItem : mWineList) {
+
+            if(wineItem.getmWineNumber().equals(wineNumber)) {
+                return wineItem;
+            }
+
+        }
+        return null;
+    }
+
+
     private void LoadWineList()
     {
         Scanner scanner = null;

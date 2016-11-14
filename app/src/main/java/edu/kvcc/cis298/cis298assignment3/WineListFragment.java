@@ -28,10 +28,10 @@ public class WineListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate();
+        View view = inflater.inflate(R.layout.fragement_wine_list, container, false);
 
 
-        mRecyclerView = (RecyclerView) view.findViewById();
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.Wine_Recycler_View);
 
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -46,6 +46,8 @@ public class WineListFragment extends Fragment {
 
     private class WineHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        //This should hold all of the items in a single wine detail list.
+
         private WineItem mWine;
 
         //Constructor for the CrimeHolder.
@@ -53,23 +55,24 @@ public class WineListFragment extends Fragment {
             //Call the parent constructor
             super(itemView);
             itemView.setOnClickListener(this);
+
+            //need to set up the views for the layout widgets here.
         }
 
         //Write a method in here to take in an instance of a crime
         //and then assign the crime properties to the various
         //view widgets
         public  void bindWine(WineItem wine) {
-            //Assign the passed in crime to the class level one
-            //This may not be needed? Could use the local one.
-            //Maybe we will need it later on.
+
             mWine = wine;
-            //Set the widget controls with the data from the crime.
+
+            // Need to actually wire up the  the layout widgets here.
 
         }
 
         @Override
         public void onClick(View v) {
-            Intent intent = WinePagerActivity.newIntent(getActivity());
+            Intent intent = WinePagerActivity.CreateNewIntent(getActivity(),mWine.getmWineNumber());
             startActivity(intent);
         }
     }
@@ -86,11 +89,10 @@ public class WineListFragment extends Fragment {
 
         @Override
         public WineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            //Get a reference to a layout inflator that can inflate our view
+
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            //Use the inflator to inflate the default android list view.
-            //We did not write this layout file. It is a standard android one.
-            View view = layoutInflater.inflate(, parent, false);
+
+            View view = layoutInflater.inflate(R.layout.list_item_wine, parent, false);
             //Return a new crimeHolder and pass in the view we just created.
             return new WineHolder(view);
         }
